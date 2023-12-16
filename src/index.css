@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Terminess Nerd Font", "DotGothic16", monospace, sans-serif !important;
+}
