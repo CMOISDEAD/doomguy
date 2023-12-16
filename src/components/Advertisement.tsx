@@ -24,7 +24,7 @@ export const Advertisement = ({ isOpen, onOpenChange }: any) => {
                 And if you want to contribute to this project, you can do so by
                 forking this project on{" "}
                 <Link
-                  href="https://github.com/CMOISDEAD/doomman"
+                  href="https://github.com/CMOISDEAD/doomguy"
                   target="_blank"
                 >
                   GitHub.
