@@ -1,9 +1,12 @@
 import { useEffect, useRef } from "react";
-import { Button, ButtonGroup } from "@nextui-org/react";
+import { Button, ButtonGroup, useDisclosure } from "@nextui-org/react";
 import useDoomStore from "../../store/store";
+import { RxCode } from "react-icons/rx";
+import { Information } from "./Information";
 
 export const Toolbar = () => {
   const { activeRequest, requestList, updateActiveRequest } = useDoomStore((state) => state);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -19,13 +22,11 @@ export const Toolbar = () => {
       ...activeRequest,
       title: value,
     };
-    const idx = requestList.findIndex((req) => req.id === activeRequest.id);
-    requestList[idx] = newReq;
     updateActiveRequest(newReq);
   }
 
   return (
-    <div className="flex gap-2 justify-between items-center px-3 my-2 w-full h-10 text-sm border-divider">
+    <div className="flex gap-2 justify-between items-center my-2 w-full h-10 text-sm border-divider">
       <input
         ref={inputRef}
         type="text"
@@ -33,9 +34,9 @@ export const Toolbar = () => {
         onChange={handleUpdate}
       />
       <ButtonGroup size="sm" variant="ghost">
-        <Button>Headers</Button>
-        <Button>Body</Button>
+        <Button onPress={onOpen}><RxCode /></Button>
       </ButtonGroup>
+      <Information isOpen={isOpen} onOpenChange={onOpenChange} />
     </div>
   );
 };

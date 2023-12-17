@@ -1,61 +1,55 @@
 import { create } from "zustand";
-
-interface Response {
-  data: any;
-  status: number;
-  headers: any;
-  timeout: number;
-  method: string;
-}
-
-interface Request {
-  id: number;
-  title: string;
-  url: string;
-  method: string;
-  headers: any;
-  data: any;
-  timeout: number;
-  response: Response | null;
-}
+import { persist, createJSONStorage } from "zustand/middleware";
 
 interface DoomState {
   settings: {
     theme: string;
     timeout: number;
   };
-  requestList: Request[];
-  activeRequest: Request | null;
+  requestList: RequestInterface[];
+  activeRequest: RequestInterface | null;
 }
 
 interface Action {
-  updateActiveRequest: (request: Request) => void;
-  updateRequestList: (newRequests: Request[]) => void;
-  appendRequestList: (request: Request) => void;
+  updateActiveRequest: (request: RequestInterface) => void;
+  updateRequestList: (newRequests: RequestInterface[]) => void;
+  appendRequestList: (request: RequestInterface) => void;
   removeRequestList: (id: number) => void;
 }
 
-const useDoomStore = create<DoomState & Action>()((set) => ({
-  settings: {
-    theme: "dark",
-    timeout: 5000,
-  },
-  requestList: [],
-  activeRequest: null,
-  updateActiveRequest: (request: Request) =>
-    set(() => ({ activeRequest: request })),
-  updateRequestList: (newRequests: Request[]) =>
-    set(() => ({ requestList: newRequests })),
-  appendRequestList: (request: Request) =>
-    set((state) => ({
-      requestList: [...state.requestList, request],
-    })),
-  removeRequestList: (id: number) =>
-    set((state) => ({
-      requestList: state.requestList.filter((req) => req.id !== id),
-      activeRequest:
-        state.activeRequest?.id === id ? null : state.activeRequest,
-    })),
-}));
+const useDoomStore = create<DoomState & Action>()(
+  persist(
+    (set) => ({
+      settings: {
+        theme: "dark",
+        timeout: 5000,
+      },
+      requestList: [],
+      activeRequest: null,
+      updateActiveRequest: (request: RequestInterface) =>
+        set((state) => {
+          const idx = state.requestList.findIndex((req) => req.id === request.id)
+          state.requestList[idx] = request;
+          return { activeRequest: request }
+        }),
+      updateRequestList: (newRequests: RequestInterface[]) =>
+        set(() => ({ requestList: newRequests })),
+      appendRequestList: (request: RequestInterface) =>
+        set((state) => ({
+          requestList: [...state.requestList, request],
+        })),
+      removeRequestList: (id: number) =>
+        set((state) => ({
+          requestList: state.requestList.filter((req) => req.id !== id),
+          activeRequest:
+            state.activeRequest?.id === id ? null : state.activeRequest,
+        })),
+    }),
+    {
+      name: "doom-state",
+      storage: createJSONStorage(() => localStorage)
+    }
+  ),
+);
 
 export default useDoomStore;

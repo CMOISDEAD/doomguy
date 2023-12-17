@@ -12,7 +12,7 @@ export const FetchList = () => {
         <div className="top">
           <Toolbar />
           <Divider />
-          <div className="flex flex-col gap-2 my-2">
+          <div className="flex overflow-y-auto flex-col gap-2 my-2 max-h-[36rem]">
             {requestList.map((request, i) => (
               <Request request={request} key={i} />
             ))}
