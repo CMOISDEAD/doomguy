@@ -7,7 +7,7 @@ interface ResponseInterface {
 }
 
 interface RequestInterface {
-  id: number;
+  id?: number;
   title: string;
   url: string;
   method: string;

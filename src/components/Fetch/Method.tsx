@@ -1,6 +1,6 @@
-import { Select, SelectItem } from "@nextui-org/react"
-import useDoomStore from "../../store/store"
+import { Select, SelectItem } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import useDoomStore from "../../store/store";
 
 export const Method = () => {
   const methods = ["GET", "POST", "PUT", "PATCH", "DELETE"];
@@ -12,12 +12,12 @@ export const Method = () => {
 
   useEffect(() => {
     setValue(new Set([activeRequest.method]));
-  }, [activeRequest])
+  }, [activeRequest]);
 
   const handleUpdate = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     updateActiveRequest({ ...activeRequest, method: value });
-  }
+  };
 
   return (
     <Select
@@ -36,5 +36,5 @@ export const Method = () => {
         </SelectItem>
       ))}
     </Select>
-  )
-}
+  );
+};

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { v4 as uuidv4 } from "uuid";
 
 interface DoomState {
   settings: {
@@ -28,15 +29,23 @@ const useDoomStore = create<DoomState & Action>()(
       activeRequest: null,
       updateActiveRequest: (request: RequestInterface) =>
         set((state) => {
-          const idx = state.requestList.findIndex((req) => req.id === request.id)
+          const idx = state.requestList.findIndex(
+            (req) => req.id === request.id,
+          );
           state.requestList[idx] = request;
-          return { activeRequest: request }
+          return { activeRequest: request };
         }),
       updateRequestList: (newRequests: RequestInterface[]) =>
         set(() => ({ requestList: newRequests })),
       appendRequestList: (request: RequestInterface) =>
         set((state) => ({
-          requestList: [...state.requestList, request],
+          requestList: [
+            ...state.requestList,
+            {
+              ...request,
+              id: uuidv4(),
+            },
+          ],
         })),
       removeRequestList: (id: number) =>
         set((state) => ({
@@ -47,8 +56,8 @@ const useDoomStore = create<DoomState & Action>()(
     }),
     {
       name: "doom-state",
-      storage: createJSONStorage(() => localStorage)
-    }
+      storage: createJSONStorage(() => localStorage),
+    },
   ),
 );
 

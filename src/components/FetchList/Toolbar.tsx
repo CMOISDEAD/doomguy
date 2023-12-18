@@ -1,20 +1,21 @@
 import { RxPlus, RxQuestionMarkCircled } from "react-icons/rx";
 import { Button } from "@nextui-org/react";
 import useDoomStore from "../../store/store";
+import notify from "../../utils/notify";
 
 export const Toolbar = () => {
-  const { requestList, appendRequestList } = useDoomStore((state) => state);
+  const { appendRequestList } = useDoomStore((state) => state);
   const handleAdd = () => {
     appendRequestList({
-      id: requestList.length + 1,
+      url: "",
       title: "New Request",
       method: "GET",
-      url: "",
       headers: {},
       data: {},
       timeout: 0,
       response: null,
     });
+    notify("New request added", { type: "success" });
   };
 
   return (

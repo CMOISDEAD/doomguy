@@ -1,6 +1,7 @@
 import { Button, ButtonGroup, Tooltip } from "@nextui-org/react";
 import { RxTrash } from "react-icons/rx";
 import useDoomStore from "../../store/store";
+import notify from "../../utils/notify";
 
 interface Props {
   request: any;
@@ -19,6 +20,7 @@ export const Request = ({ request }: Props) => {
 
   const handleDelete = () => {
     removeRequestList(id);
+    notify("Request deleted", { type: "error" });
   };
 
   return (
@@ -31,7 +33,8 @@ export const Request = ({ request }: Props) => {
         color={activeRequest?.id === id ? "success" : "default"}
       >
         <p className="text-clip truncate">
-          <span className="text-success">{method}</span> <span className="text-foreground">{title}</span>
+          <span className="text-success">{method}</span>{" "}
+          <span className="text-foreground">{title}</span>
         </p>
       </Button>
       <Tooltip content="Delete request" placement="bottom">
