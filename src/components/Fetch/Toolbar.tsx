@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Button, ButtonGroup, useDisclosure } from "@nextui-org/react";
 import useDoomStore from "../../store/store";
 import { RxCode } from "react-icons/rx";
-import { Information } from "./Information";
+import { Details } from "./Details";
 
 export const Toolbar = () => {
   const { activeRequest, updateActiveRequest } = useDoomStore((state) => state);
@@ -38,7 +38,7 @@ export const Toolbar = () => {
           <RxCode />
         </Button>
       </ButtonGroup>
-      <Information isOpen={isOpen} onOpenChange={onOpenChange} />
+      <Details isOpen={isOpen} onOpenChange={onOpenChange} />
     </div>
   );
 };

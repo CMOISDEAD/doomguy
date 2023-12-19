@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { FetchList } from "./components/FetchList/FetchList";
 import { Layout } from "./components/Layout";
 import { Preview } from "./components/Preview/Preview";
-import { UrlFetch } from "./components/Fetch/UrlFetch";
 import { useDisclosure } from "@nextui-org/react";
 import { Advertisement } from "./components/Advertisement";
 import useDoomStore from "./store/store";
 import { Placeholder } from "./components/Placeholder";
+import { Fetch } from "./components/Fetch/Fetch";
+import { RequestTree } from "./components/RequestTree/RequestTree";
 
 function App() {
   const { activeRequest } = useDoomStore((state) => state);
@@ -19,11 +19,11 @@ function App() {
   return (
     <Layout>
       <div className="flex gap-2 justify-between mr-2 h-full">
-        <FetchList />
+        <RequestTree />
         <div className="flex flex-col flex-grow gap-2 max-w-5xl">
           {activeRequest ? (
             <>
-              <UrlFetch />
+              <Fetch />
               <Preview />
             </>
           ) : (

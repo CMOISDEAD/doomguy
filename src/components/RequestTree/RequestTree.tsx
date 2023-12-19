@@ -1,9 +1,9 @@
 import { Card, CardBody, Divider } from "@nextui-org/react";
 import useDoomStore from "../../store/store";
-import { Request } from "./Request";
+import { RequestButton } from "./RequestButton";
 import { Toolbar } from "./Toolbar";
 
-export const FetchList = () => {
+export const RequestTree = () => {
   const { requestList } = useDoomStore.getState();
 
   return (
@@ -14,7 +14,7 @@ export const FetchList = () => {
           <Divider />
           <div className="flex overflow-y-auto flex-col gap-2 my-2 max-h-[36rem]">
             {requestList.map((request, i) => (
-              <Request request={request} key={i} />
+              <RequestButton request={request} key={i} />
             ))}
           </div>
         </div>

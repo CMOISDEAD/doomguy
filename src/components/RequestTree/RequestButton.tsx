@@ -7,7 +7,7 @@ interface Props {
   request: RequestInterface;
 }
 
-export const Request = ({ request }: Props) => {
+export const RequestButton = ({ request }: Props) => {
   const { requestList, activeRequest, updateActiveRequest, removeRequestList } =
     useDoomStore((state) => state);
 

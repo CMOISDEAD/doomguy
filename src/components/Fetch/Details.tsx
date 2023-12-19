@@ -18,7 +18,7 @@ interface Props {
   onOpenChange: () => void;
 }
 
-export const Information = ({ isOpen, onOpenChange }: Props) => {
+export const Details = ({ isOpen, onOpenChange }: Props) => {
   const [headers, setHeaders] = useState<string[]>([
     "Accept: application/json",
     "Content-Type: application/json",
