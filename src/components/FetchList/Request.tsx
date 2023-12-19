@@ -4,22 +4,21 @@ import useDoomStore from "../../store/store";
 import notify from "../../utils/notify";
 
 interface Props {
-  request: any;
+  request: RequestInterface;
 }
 
 export const Request = ({ request }: Props) => {
-  const { id, method, title } = request;
   const { requestList, activeRequest, updateActiveRequest, removeRequestList } =
-    useDoomStore();
+    useDoomStore((state) => state);
 
   const handleSelect = () => {
-    const request = requestList.find((request) => request.id === id);
+    const request = requestList.find((request) => request.id === request.id);
     if (!request) return;
     updateActiveRequest(request);
   };
 
   const handleDelete = () => {
-    removeRequestList(id);
+    removeRequestList(request.id!);
     notify("Request deleted", { type: "error" });
   };
 
@@ -30,11 +29,11 @@ export const Request = ({ request }: Props) => {
         variant="ghost"
         size="sm"
         onPress={handleSelect}
-        color={activeRequest?.id === id ? "success" : "default"}
+        color={activeRequest?.id === request.id ? "success" : "default"}
       >
         <p className="text-clip truncate">
-          <span className="text-success">{method}</span>{" "}
-          <span className="text-foreground">{title}</span>
+          <span className="text-success">{request.method}</span>{" "}
+          <span className="text-foreground">{request.title}</span>
         </p>
       </Button>
       <Tooltip content="Delete request" placement="bottom">

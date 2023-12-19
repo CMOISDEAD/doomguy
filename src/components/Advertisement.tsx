@@ -8,7 +8,12 @@ import {
   ModalHeader,
 } from "@nextui-org/react";
 
-export const Advertisement = ({ isOpen, onOpenChange }: any) => {
+interface Props {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export const Advertisement = ({ isOpen, onOpenChange }: Props) => {
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>

@@ -1,7 +1,7 @@
 import { Card, CardBody, Divider } from "@nextui-org/react";
-import { Toolbar } from "./Toolbar";
-import { Request } from "./Request";
 import useDoomStore from "../../store/store";
+import { Request } from "./Request";
+import { Toolbar } from "./Toolbar";
 
 export const FetchList = () => {
   const { requestList } = useDoomStore.getState();

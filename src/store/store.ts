@@ -15,7 +15,7 @@ interface Action {
   updateActiveRequest: (request: RequestInterface) => void;
   updateRequestList: (newRequests: RequestInterface[]) => void;
   appendRequestList: (request: RequestInterface) => void;
-  removeRequestList: (id: number) => void;
+  removeRequestList: (id: string) => void;
 }
 
 const useDoomStore = create<DoomState & Action>()(
@@ -47,7 +47,7 @@ const useDoomStore = create<DoomState & Action>()(
             },
           ],
         })),
-      removeRequestList: (id: number) =>
+      removeRequestList: (id: string) =>
         set((state) => ({
           requestList: state.requestList.filter((req) => req.id !== id),
           activeRequest:

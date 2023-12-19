@@ -5,7 +5,7 @@ import { RxCode } from "react-icons/rx";
 import { Information } from "./Information";
 
 export const Toolbar = () => {
-  const { activeRequest, requestList, updateActiveRequest } = useDoomStore((state) => state);
+  const { activeRequest, updateActiveRequest } = useDoomStore((state) => state);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -23,7 +23,7 @@ export const Toolbar = () => {
       title: value,
     };
     updateActiveRequest(newReq);
-  }
+  };
 
   return (
     <div className="flex gap-2 justify-between items-center my-2 w-full h-10 text-sm border-divider">
@@ -34,7 +34,9 @@ export const Toolbar = () => {
         onChange={handleUpdate}
       />
       <ButtonGroup size="sm" variant="ghost">
-        <Button onPress={onOpen}><RxCode /></Button>
+        <Button onPress={onOpen}>
+          <RxCode />
+        </Button>
       </ButtonGroup>
       <Information isOpen={isOpen} onOpenChange={onOpenChange} />
     </div>
