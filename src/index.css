@@ -1,8 +1,44 @@
-@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: "Terminess Nerd Font", "DotGothic16", monospace, sans-serif !important;
+body {
+  font-family: "Geist", serif;
+}
+
+pre,
+code {
+  font-family: "GeistMono", monospace !important;
+}
+
+/* Load fonts */
+
+@font-face {
+  font-family: "Geist";
+  src:
+    url("/fonts/Geist/Geist-Regular.woff2") format("woff2"),
+    url("/fonts/Geist/Geist-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Geist";
+  src:
+    url("/fonts/Geist/Geist-Bold.woff2") format("woff2"),
+    url("/fonts/Geist/Geist-Bold.woff") format("woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src:
+    url("/fonts/Mono/GeistMono-Regular.woff2") format("woff2"),
+    url("/fonts/Mono/GeistMono-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src:
+    url("/fonts/Mono/GeistMono-Bold.woff2") format("woff2"),
+    url("/fonts/Mono/GeistMono-Bold.woff") format("woff");
+  font-weight: bold;
 }

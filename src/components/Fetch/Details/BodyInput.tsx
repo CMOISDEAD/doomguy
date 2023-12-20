@@ -1,8 +1,8 @@
-import { ChangeEvent, useState } from "react";
 import { Textarea } from "@nextui-org/react";
+import { ChangeEvent, useState } from "react";
+
 import useDoomStore from "../../../store/store";
 
-// TODO: Implement a JSON checker
 export const BodyInput = () => {
   const { activeRequest, updateActiveRequest } = useDoomStore((state) => state);
   const [error, setError] = useState(false);

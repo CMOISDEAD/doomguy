@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Tooltip } from "@nextui-org/react";
 import { RxTrash } from "react-icons/rx";
+
 import useDoomStore from "../../store/store";
 import notify from "../../utils/notify";
 
@@ -32,8 +33,8 @@ export const RequestButton = ({ request }: Props) => {
         color={activeRequest?.id === request.id ? "success" : "default"}
         className="justify-start"
       >
-        <p className="text-clip truncate">
-          <span className="text-success">{request.method}</span>{" "}
+        <p className="flex gap-2 text-clip truncate">
+          <span className="font-bold text-success">{request.method}</span>
           <span className="text-foreground">{request.title}</span>
         </p>
       </Button>

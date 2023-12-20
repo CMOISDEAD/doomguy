@@ -27,7 +27,6 @@ export const Fetch = () => {
     const method = e.currentTarget.method.value;
     const url = e.currentTarget.url.value;
     try {
-      // TODO: this variable should have another name
       setLoading(true);
       const data = await axios({
         url,
