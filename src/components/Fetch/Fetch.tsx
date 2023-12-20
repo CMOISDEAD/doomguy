@@ -3,8 +3,9 @@ import axios from "axios";
 import { useEffect, useRef } from "react";
 import useDoomStore from "../../store/store";
 import { errorMap, parseRequest, responseMap } from "../../utils/utils";
-import { Method } from "./Method";
 import { Toolbar } from "./Toolbar";
+import { URLInput } from "./URLInput";
+import { requestError } from "../../utils/requestError";
 
 export const Fetch = () => {
   const { activeRequest, updateActiveRequest } = useDoomStore((state) => ({
@@ -24,19 +25,23 @@ export const Fetch = () => {
     const method = e.currentTarget.method.value;
     const url = e.currentTarget.url.value;
     try {
+      // TODO: this variable should have another name
       const data = await axios({
         url,
         method,
         timeout: 5000,
+        data: activeRequest.body || {},
       });
       const response = responseMap(data);
       const newReq = parseRequest(activeRequest, url, method, response);
       updateActiveRequest(newReq);
     } catch (error) {
       console.error(error);
-      const response = errorMap(error);
-      const newReq = parseRequest(activeRequest, url, method, response);
-      updateActiveRequest(newReq);
+      if (requestError(error)) {
+        const response = errorMap(error);
+        const newReq = parseRequest(activeRequest, url, method, response);
+        updateActiveRequest(newReq);
+      }
     }
   };
 
@@ -48,19 +53,8 @@ export const Fetch = () => {
           className="flex flex-col gap-2 justify-between h-full"
         >
           <Toolbar />
-          <div className="flex gap-2">
-            <Method />
-            <input
-              required
-              ref={inputRef}
-              spellCheck={false}
-              type="text"
-              name="url"
-              className="flex-grow p-4 w-full rounded-lg focus:outline-none bg-content2 text-foreground hover:bg-content3 focus:bg-content3"
-              placeholder="https://jsonplaceholder.typicode.com/todos/1"
-            />
-          </div>
-          <Button color="success" type="submit">
+          <URLInput inputRef={inputRef} />
+          <Button color="success" type="submit" variant="flat">
             Make Request
           </Button>
         </form>

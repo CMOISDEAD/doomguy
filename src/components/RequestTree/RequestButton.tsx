@@ -12,9 +12,9 @@ export const RequestButton = ({ request }: Props) => {
     useDoomStore((state) => state);
 
   const handleSelect = () => {
-    const request = requestList.find((request) => request.id === request.id);
-    if (!request) return;
-    updateActiveRequest(request);
+    const matched = requestList.find((req) => req.id === request.id);
+    if (!matched) return;
+    updateActiveRequest(matched);
   };
 
   const handleDelete = () => {
@@ -30,6 +30,7 @@ export const RequestButton = ({ request }: Props) => {
         size="sm"
         onPress={handleSelect}
         color={activeRequest?.id === request.id ? "success" : "default"}
+        className="justify-start"
       >
         <p className="text-clip truncate">
           <span className="text-success">{request.method}</span>{" "}

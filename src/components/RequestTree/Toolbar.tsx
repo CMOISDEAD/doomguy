@@ -1,7 +1,8 @@
-import { RxPlus, RxQuestionMarkCircled } from "react-icons/rx";
+import { RxPlus } from "react-icons/rx";
 import { Button } from "@nextui-org/react";
 import useDoomStore from "../../store/store";
 import notify from "../../utils/notify";
+import { SearchInput } from "./SearchInput";
 
 export const Toolbar = () => {
   const { appendRequestList } = useDoomStore((state) => state);
@@ -19,16 +20,10 @@ export const Toolbar = () => {
   };
 
   return (
-    <div className="flex justify-between content-center items-center pb-2 text-xs">
-      <Button
-        className="flex gap-2 content-center items-center"
-        size="sm"
-        onPress={handleAdd}
-      >
-        <RxPlus /> Add new
-      </Button>
-      <Button size="sm">
-        <RxQuestionMarkCircled />
+    <div className="flex gap-1 justify-between content-center items-center pb-2 text-xs">
+      <SearchInput />
+      <Button size="sm" variant="light" onPress={handleAdd}>
+        <RxPlus />
       </Button>
     </div>
   );

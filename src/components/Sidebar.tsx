@@ -11,10 +11,10 @@ export const Sidebar = () => {
   return (
     <div className="flex sticky top-0 flex-col justify-between p-3 h-screen border border-divider bg-content1">
       <div className="flex flex-col gap-1">
-        <Tooltip content="Settings" placement="right">
+        <Tooltip content="Doomguy" placement="right">
           <button className="w-3 h-3 rounded-full bg-success hover:bg-success-300" />
         </Tooltip>
-        <Tooltip content="Settings" placement="right">
+        <Tooltip content="Blog" placement="right">
           <button className="w-3 h-3 rounded-full bg-warning-500 hover:bg-warning-300" />
         </Tooltip>
         <Tooltip content="Toggle Theme" placement="right">

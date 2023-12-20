@@ -8,6 +8,7 @@ interface DoomState {
     timeout: number;
   };
   requestList: RequestInterface[];
+  searchList: RequestInterface[];
   activeRequest: RequestInterface | null;
 }
 
@@ -26,6 +27,7 @@ const useDoomStore = create<DoomState & Action>()(
         timeout: 5000,
       },
       requestList: [],
+      searchList: [],
       activeRequest: null,
       updateActiveRequest: (request: RequestInterface) =>
         set((state) => {
