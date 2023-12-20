@@ -6,6 +6,7 @@ interface DoomState {
   settings: {
     theme: string;
     timeout: number;
+    previewStyle: boolean;
   };
   requestList: RequestInterface[];
   searchList: RequestInterface[];
@@ -25,6 +26,7 @@ const useDoomStore = create<DoomState & Action>()(
       settings: {
         theme: "dark",
         timeout: 5000,
+        previewStyle: true,
       },
       requestList: [],
       searchList: [],

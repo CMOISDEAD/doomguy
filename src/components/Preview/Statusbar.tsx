@@ -10,6 +10,16 @@ export const Statusbar = () => {
     method: "N/A",
   };
 
+  const handlePreviewStyle = (value: boolean) => {
+    useDoomStore.setState((state) => ({
+      ...state,
+      settings: {
+        ...state.settings,
+        previewStyle: value,
+      },
+    }));
+  };
+
   const statusColor = (status: number) =>
     status === 200 ? "success" : status === 404 ? "danger" : "warning";
 
@@ -21,7 +31,7 @@ export const Statusbar = () => {
           <div className="flex gap-2 content-center items-center">
             <div
               className={`w-2 h-2 bg-${statusColor(
-                response.status
+                response.status,
               )} rounded-full`}
             />
             <span className={`text-${statusColor(response.status)}`}>
@@ -41,8 +51,8 @@ export const Statusbar = () => {
         </div>
       </div>
       <ButtonGroup size="sm" variant="light">
-        <Button>JSON</Button>
-        <Button>RAW</Button>
+        <Button onPress={() => handlePreviewStyle(true)}>JSON</Button>
+        <Button onPress={() => handlePreviewStyle(false)}>RAW</Button>
       </ButtonGroup>
     </div>
   );
