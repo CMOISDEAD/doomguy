@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { Layout } from "./components/Layout";
-import { Preview } from "./components/Preview/Preview";
 import { useDisclosure } from "@nextui-org/react";
+import { useEffect } from "react";
+
 import { Advertisement } from "./components/Advertisement";
-import useDoomStore from "./store/store";
-import { Placeholder } from "./components/Placeholder";
 import { Fetch } from "./components/Fetch/Fetch";
+import { Layout } from "./components/Layout";
+import { Placeholder } from "./components/Placeholder";
+import { Preview } from "./components/Preview/Preview";
 import { RequestTree } from "./components/RequestTree/RequestTree";
+import useDoomStore from "./store/store";
 
 function App() {
   const { activeRequest } = useDoomStore((state) => state);

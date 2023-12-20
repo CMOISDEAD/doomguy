@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
 import { Button, ButtonGroup, useDisclosure } from "@nextui-org/react";
-import useDoomStore from "../../store/store";
+import { useEffect, useRef } from "react";
 import { RxCode } from "react-icons/rx";
+
+import useDoomStore from "../../store/store";
 import { Details } from "./Details/Details";
 
 export const Toolbar = () => {

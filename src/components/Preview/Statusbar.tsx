@@ -1,4 +1,5 @@
 import { Button, ButtonGroup } from "@nextui-org/react";
+
 import useDoomStore from "../../store/store";
 
 export const Statusbar = () => {

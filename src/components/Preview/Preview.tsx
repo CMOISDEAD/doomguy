@@ -1,13 +1,14 @@
+import { Card, CardBody, Kbd } from "@nextui-org/react";
+import { useTheme } from "next-themes";
+import { useMemo } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {
   atomOneDarkReasonable,
   atomOneLight,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { Card, CardBody, Kbd } from "@nextui-org/react";
+
 import useDoomStore from "../../store/store";
 import { Statusbar } from "./Statusbar";
-import { useTheme } from "next-themes";
-import { useMemo } from "react";
 
 export const Preview = () => {
   const { activeRequest, settings } = useDoomStore((state) => state);

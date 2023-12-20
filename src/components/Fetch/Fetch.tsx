@@ -1,13 +1,15 @@
 import { Button, Card, CardBody } from "@nextui-org/react";
 import axios from "axios";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
 import useDoomStore from "../../store/store";
+import { requestError } from "../../utils/requestError";
 import { errorMap, parseRequest, responseMap } from "../../utils/utils";
 import { Toolbar } from "./Toolbar";
 import { URLInput } from "./URLInput";
-import { requestError } from "../../utils/requestError";
 
 export const Fetch = () => {
+  const [loading, setLoading] = useState(false);
   const { activeRequest, updateActiveRequest } = useDoomStore((state) => ({
     activeRequest: state.activeRequest!,
     updateActiveRequest: state.updateActiveRequest,
@@ -26,6 +28,7 @@ export const Fetch = () => {
     const url = e.currentTarget.url.value;
     try {
       // TODO: this variable should have another name
+      setLoading(true);
       const data = await axios({
         url,
         method,
@@ -42,6 +45,8 @@ export const Fetch = () => {
         const newReq = parseRequest(activeRequest, url, method, response);
         updateActiveRequest(newReq);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,7 +59,12 @@ export const Fetch = () => {
         >
           <Toolbar />
           <URLInput inputRef={inputRef} />
-          <Button color="success" type="submit" variant="flat">
+          <Button
+            type="submit"
+            color="success"
+            variant="flat"
+            isLoading={loading}
+          >
             Make Request
           </Button>
         </form>
