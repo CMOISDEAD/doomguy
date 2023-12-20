@@ -7,7 +7,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/cmoisdead/doomguy)
 ![GitHub issues](https://img.shields.io/github/issues/cmoisdead/doomguy)
 ![GitHub forks](https://img.shields.io/github/forks/cmoisdead/doomguy)
-![GitHub license](https://img.shields.io/github/license/cmoisdead/doomguy)
+![GitHub license](https://img.shields.io/github/license/CMOISDEAD/doomguy)
 
 </div>
 
